@@ -1,6 +1,16 @@
 ---
 - hosts: localhost      # 接続先(localhostは、インベントリーになくとも指定可能)
-  gather_facts: false
+  gather_facts: true
+  become: yes
+  vars:
+    docker_users:
+      - koichiro
+    docker_edition: 'ce'
+    docker_service_state: started
+    docker_service_enabled: true
+    docker_install_compose: true
+  roles:
+    - geerlingguy.docker
   tasks:
 
   - shell: hostname
